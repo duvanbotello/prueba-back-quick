@@ -33,12 +33,11 @@ BASE_APPS = [
 ]
 
 LOCAL_APPS = [
-
+    'apps.users',
 ]
 
 THIRD_APPS = [
     'rest_framework',
-    'django_markdown',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -103,6 +102,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
