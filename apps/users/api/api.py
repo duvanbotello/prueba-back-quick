@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
@@ -13,6 +14,7 @@ def api_anything(request, resource):
 
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def api_users(request):
     if request.content_type == 'application/json':
         # list users
@@ -31,10 +33,13 @@ def api_users_create(request):
     if request.content_type == 'application/json':
         # create user
         if request.method == 'POST':
+            request.data['password'] = make_password(request.data['password'])
             user_serializer = UserSerializer(data=request.data)
             if user_serializer.is_valid():
                 user_serializer.save()
-                return Response(user_serializer.data, status=status.HTTP_201_CREATED)
+                response = user_serializer.data
+                response.pop('password', None)
+                return Response(response, status=status.HTTP_201_CREATED)
             return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response({"error": "Request should have 'Content-Type' header with value 'application/json'"},
@@ -42,6 +47,7 @@ def api_users_create(request):
 
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def getuser(request, pk=None):
     if request.content_type == 'application/json':
         # queryset
@@ -52,7 +58,9 @@ def getuser(request, pk=None):
             # bring user
             if request.method == 'GET':
                 user_serializer = UserSerializer(user)
-                return Response(user_serializer.data, status=status.HTTP_200_OK)
+                response = user_serializer.data
+                response.pop('password', None)
+                return Response(response, status=status.HTTP_200_OK)
 
         return Response({'message': 'User not found'}, status=status.HTTP_400_BAD_REQUEST)
     else:
@@ -61,16 +69,51 @@ def getuser(request, pk=None):
 
 
 @api_view(['PUT'])
+@permission_classes((IsAuthenticated,))
 def edit_user(request, pk=None):
     if request.content_type == 'application/json':
         user = Users.objects.filter(id=pk).first()
         if user:
             if request.method == 'PUT':
-                user_serializer = UserSerializer(user, data=request.data)
-                if user_serializer.is_valid():
-                    user_serializer.save()
-                    return Response(user_serializer.data, status=status.HTTP_200_OK)
-                return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                if len(request.data) != 0:
+                    try:
+                        if request.data['password']:
+                            request.data['password'] = make_password(request.data['password'])
+                    except:
+                        pass
+                    user_serializer = UserSerializer(user, data=request.data)
+                    if user_serializer.is_valid():
+                        user_serializer.save()
+                        response = user_serializer.data
+                        response.pop('password', None)
+                        return Response(response, status=status.HTTP_200_OK)
+                    return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                else:
+                    return Response({'message': 'empty body'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': 'User not found'}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({"error": "Request should have 'Content-Type' header with value 'application/json'"},
+                        status=status.HTTP_403_FORBIDDEN)
+
+
+@api_view(['PATCH'])
+@permission_classes((IsAuthenticated,))
+def edit_p_user(request, pk=None):
+    if request.content_type == 'application/json':
+        user = Users.objects.filter(id=pk).first()
+        if user:
+            if request.method == 'PATCH':
+                if len(request.data) != 0:
+                    list_field_edit = user.edit_user_patch(request)
+                    Users.objects.filter(id=pk).update(**list_field_edit)
+                    user_update = Users.objects.filter(id=pk).first()
+                    user_serializer = UserSerializer(user_update)
+                    response = user_serializer.data
+                    response.pop('password', None)
+                    return Response(response, status=status.HTTP_200_OK)
+
+                else:
+                    return Response({'message': 'empty body'}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({'message': 'User not found'}, status=status.HTTP_400_BAD_REQUEST)
     else:
@@ -79,6 +122,7 @@ def edit_user(request, pk=None):
 
 
 @api_view(['DELETE'])
+@permission_classes((IsAuthenticated,))
 def delete_user(request, pk=None):
     if request.content_type == 'application/json':
         user = Users.objects.filter(id=pk).first()
@@ -86,8 +130,9 @@ def delete_user(request, pk=None):
             # delete user
             if request.method == 'DELETE':
                 user = Users.objects.filter(id=pk).first()
-                user_serializer = UserSerializer(user.delete())
-                return Response(user_serializer, status=status.HTTP_200_OK)
+                user_serializer = UserSerializer(user)
+                user.delete()
+                return Response(user_serializer.data, status=status.HTTP_200_OK)
 
         return Response({'message': 'User not found'}, status=status.HTTP_400_BAD_REQUEST)
     else:
