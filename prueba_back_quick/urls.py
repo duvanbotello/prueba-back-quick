@@ -21,6 +21,7 @@ from apps.users.api.api import api_anything
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('apps.users.api.urls')),
+    path('auth/', include('apps.authenticate.urls')),
     path('', api_anything, {'resource': ''}),
     path('<path:resource>', api_anything)
 ]

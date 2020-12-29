@@ -1,9 +1,12 @@
 from django.urls import path
-from apps.users.api.api import api_users, getuser, api_anything
+from apps.users.api.api import api_users, getuser, api_anything, api_users_create, edit_user, delete_user
 
 urlpatterns = [
     path('users/', api_users, name='user'),
+    path('users/create', api_users_create, name='user'),
     path('users/<int:pk>/', getuser, name='get_user'),
+    path('users/edit/<int:pk>/', edit_user, name='edit_user'),
+    path('users/delete/<int:pk>/', delete_user, name='delete_user'),
     path('', api_anything, {'resource': ''}),
     path('<path:resource>', api_anything)
 ]
