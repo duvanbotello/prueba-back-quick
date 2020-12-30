@@ -4,15 +4,15 @@ Prueba de desarrollo Backend - Quick
 Prueba para el cargo de Desarrollador backend Quick.
 
 ## Software Usado
-    * Python (Django Rest Framework)
-    * Git
-    * GitHub
-    * PostgreSQL
-    * Docker
-    * Simple JWT (Django Rest Framework)
-    * AWS EC2
-    * Documentacion Markdown
-    * Postman
+ * Python (Django Rest Framework)
+ * Git
+ * GitHub
+ * PostgreSQL
+ * Docker
+ * Simple JWT (Django Rest Framework)
+ * AWS EC2
+ * Documentacion Markdown
+ * Postman
 
 ## Instalacion del proyecto
 ***************************************
@@ -20,7 +20,6 @@ Prueba para el cargo de Desarrollador backend Quick.
 
     $ docker-compose up -d
     $ docker exec -it api_quick bash
-    $ cd /code
     $ python manage.py migrate
     $ python manage.py createsuperuser
 
@@ -32,7 +31,13 @@ Hecho con ♥ por `Duvan Botello`
 ____________________
 
 ## Autenticación
-What is the preferred way of using the API?
+**JWT simple**
+
+Simple JWT proporciona un backend de autenticación JSON Web Token para Django REST Framework. Su objetivo es cubrir los casos de uso más comunes de JWT ofreciendo un conjunto conservador de características predeterminadas. También pretende ser fácilmente extensible en caso de que no esté presente una característica deseada.
+
+**¿Como Autenticarme?**
+
+La API REST posee un Endpoints que permite iniciar session en el sistema y nos suministra el token de autorizacion.
 
 ## Códigos de error
 What errors and status codes can a user expect?
