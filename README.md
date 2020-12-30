@@ -1,12 +1,12 @@
 ==============
-FAST API QUICK PRUEBA
+Prueba de desarrollo Backend - Quick
 ==============
 
-Make sure Python 3.5 or higher is installed on your system.
+Prueba para el cargo de Desarrollador backend Quick.
 
 
 *************
-Project setup
+Configuración del proyecto
 *************
 
 .. code-block:: rst
@@ -15,6 +15,7 @@ Project setup
     $ docker exec -it api_quick bash
     $ cd /code
     $ python manage.py migrate
+    $ python manage.py createsuperuser
 
 
-Made with ♥ by `Duvan`_
+Hecho con ♥ por `Duvan Botello`

@@ -28,14 +28,12 @@ def login(request):
                     user = authenticate(email=email, password=password)
                     if user is not None:
                         refresh = RefreshToken.for_user(user)
+                        print(refresh)
                         user.token = refresh.access_token
                         user.save()
                         user_serializer = UserSerializer(user)
                         response = user_serializer.data
                         response.pop('password', None)
-                        response.pop('is_active', None)
-                        response.pop('last_login', None)
-                        response.pop('is_admin', None)
                         return Response(response, status=status.HTTP_200_OK)
                     else:
                         return Response({"error": "Error in user or password"}, status=status.HTTP_401_UNAUTHORIZED)
