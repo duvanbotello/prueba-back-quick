@@ -72,6 +72,9 @@ def api_users_create(request):
                 user_serializer.save()
                 response = user_serializer.data
                 response.pop('password', None)
+                response.pop('is_active', None)
+                response.pop('last_login', None)
+                response.pop('is_admin', None)
                 return Response(response, status=status.HTTP_201_CREATED)
             return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
@@ -93,6 +96,9 @@ def getuser(request, pk=None):
                 user_serializer = UserSerializer(user)
                 response = user_serializer.data
                 response.pop('password', None)
+                response.pop('is_active', None)
+                response.pop('last_login', None)
+                response.pop('is_admin', None)
                 return Response(response, status=status.HTTP_200_OK)
 
         return Response({'message': 'User not found'}, status=status.HTTP_400_BAD_REQUEST)
@@ -119,6 +125,9 @@ def edit_user(request, pk=None):
                         user_serializer.save()
                         response = user_serializer.data
                         response.pop('password', None)
+                        response.pop('is_active', None)
+                        response.pop('last_login', None)
+                        response.pop('is_admin', None)
                         return Response(response, status=status.HTTP_200_OK)
                     return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
                 else:
@@ -143,6 +152,9 @@ def edit_p_user(request, pk=None):
                     user_serializer = UserSerializer(user_update)
                     response = user_serializer.data
                     response.pop('password', None)
+                    response.pop('is_active', None)
+                    response.pop('last_login', None)
+                    response.pop('is_admin', None)
                     return Response(response, status=status.HTTP_200_OK)
 
                 else:
@@ -164,8 +176,13 @@ def delete_user(request, pk=None):
             if request.method == 'DELETE':
                 user = Users.objects.filter(id=pk).first()
                 user_serializer = UserSerializer(user)
+                response = user_serializer.data
+                response.pop('password', None)
+                response.pop('is_active', None)
+                response.pop('last_login', None)
+                response.pop('is_admin', None)
                 user.delete()
-                return Response(user_serializer.data, status=status.HTTP_200_OK)
+                return Response(response, status=status.HTTP_200_OK)
 
         return Response({'message': 'User not found'}, status=status.HTTP_400_BAD_REQUEST)
     else:
