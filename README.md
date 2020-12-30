@@ -2,6 +2,7 @@ Prueba de desarrollo Backend - Quick
 ============================================
 
 Prueba para el cargo de Desarrollador backend Quick.
+http://3.129.92.204:8000/api/
 
 ## Software Usado
  * Python (Django Rest Framework)
@@ -40,13 +41,12 @@ La API REST posee un Endpoints que permite iniciar session en el sistema y nos s
 
 Cada peticion debe tener la siguente estructura en su Header.
 
-> > > **Header**
-> > > 
-> > > |Key|Value|Description|
-> > > |---|---|---|
-> > > |Content-Type|application/json||
-> > > |Authorization|Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5MzQ5NTkyLCJqdGkiOiJjYTU3ZDU5YjhkZmU0NjBjYWY5M2IzYTU5Mjc4YTIyMCIsInVzZXJfaWQiOjF9.QaVKdFFcbXcUqKvO5xSbRCq6tlAOv8F3UvzCxTbsRPU||
-> > > 
+**Header**
+|Key|Value|Description|
+|---|---|---|
+|Content-Type|application/json||
+|Authorization|Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5MzQ5NTkyLCJqdGkiOiJjYTU3ZDU5YjhkZmU0NjBjYWY5M2IzYTU5Mjc4YTIyMCIsInVzZXJfaWQiOjF9.QaVKdFFcbXcUqKvO5xSbRCq6tlAOv8F3UvzCxTbsRPU||
+
 
 ----------------
 
@@ -74,7 +74,7 @@ POST http://3.129.92.204:8000/api/login
 > ```
 > {
 > 	"email": "admin@gmail.com", 
-> 	"password": "admin456123"
+> 	"password": "admin"
 > 	
 > }
 > ```
