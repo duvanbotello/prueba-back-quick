@@ -1,6 +1,6 @@
-==============
+============================================
 Prueba de desarrollo Backend - Quick
-==============
+============================================
 
 Prueba para el cargo de Desarrollador backend Quick.
 
