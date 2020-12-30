@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.users.models import Users
-from apps.users.api.serializers import UserSerializer
+from apps.users.api.serializers import UserSerializer, getUserSerializer
 
 
 @api_view(['GET'])
@@ -51,7 +51,7 @@ def api_users(request):
         # list users
         if request.method == 'GET':
             users = Users.objects.all()
-            users_serializer = UserSerializer(users, many=True)
+            users_serializer = getUserSerializer(users, many=True)
             return Response(users_serializer.data, status=status.HTTP_200_OK)
     else:
         return Response({"error": "Request should have 'Content-Type' header with value 'application/json'"},
@@ -64,17 +64,20 @@ def api_users_create(request):
     if request.content_type == 'application/json':
         # create user
         if request.method == 'POST':
-            request.data['password'] = make_password(request.data['password'])
-            user_serializer = UserSerializer(data=request.data)
-            if user_serializer.is_valid():
-                user_serializer.save()
-                response = user_serializer.data
-                response.pop('password', None)
-                response.pop('is_active', None)
-                response.pop('last_login', None)
-                response.pop('is_admin', None)
-                return Response(response, status=status.HTTP_201_CREATED)
-            return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            if len(request.data) != 0:
+                request.data['password'] = make_password(request.data['password'])
+                user_serializer = UserSerializer(data=request.data)
+                if user_serializer.is_valid():
+                    user_serializer.save()
+                    response = user_serializer.data
+                    response.pop('password', None)
+                    response.pop('is_active', None)
+                    response.pop('last_login', None)
+                    response.pop('is_admin', None)
+                    return Response(response, status=status.HTTP_201_CREATED)
+                return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'message': 'empty body'}, status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response({"error": "Request should have 'Content-Type' header with value 'application/json'"},
                         status=status.HTTP_403_FORBIDDEN)
