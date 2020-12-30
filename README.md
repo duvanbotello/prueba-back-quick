@@ -3,7 +3,18 @@ Prueba de desarrollo Backend - Quick
 
 Prueba para el cargo de Desarrollador backend Quick.
 
-# Instalacion del proyecto
+## Software Usado
+    * Python (Django Rest Framework)
+    * Git
+    * GitHub
+    * PostgreSQL
+    * Docker
+    * Simple JWT (Django Rest Framework)
+    * AWS EC2
+    * Documentacion Markdown
+    * Postman
+
+## Instalacion del proyecto
 ***************************************
 .. code-block:: rst
 
@@ -18,25 +29,14 @@ Hecho con ♥ por `Duvan Botello`
 ***************************************
 
 # Documentacion
+____________________
 
-# api_quick
-
-----------------
-
-# Introduction
-What does your API do?
-
-# Overview
-Things that the developers should know about
-
-# Authentication
+## Autenticación
 What is the preferred way of using the API?
 
-# Error Codes
+## Códigos de error
 What errors and status codes can a user expect?
 
-# Rate limit
-Is there a limit to the number of requests an user can send?
 
 ----------------
 
@@ -1037,9 +1037,3 @@ Endpoints para generar JSON Web Token
 ----------------
 
 ----------------
-
-Built with [Postdown][PyPI].
-
-Author: [Titor](https://github.com/TitorX)
-
-[PyPI]:    https://pypi.python.org/pypi/Postdown
