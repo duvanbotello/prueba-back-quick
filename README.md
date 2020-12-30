@@ -3,10 +3,8 @@ Prueba de desarrollo Backend - Quick
 
 Prueba para el cargo de Desarrollador backend Quick.
 
-*************
-Configuración del proyecto
-*************
-
+# Instalacion del proyecto
+***************************************
 .. code-block:: rst
 
     $ docker-compose up -d
@@ -17,7 +15,7 @@ Configuración del proyecto
 
 
 Hecho con ♥ por `Duvan Botello`
-
+***************************************
 
 # Documentacion
 
