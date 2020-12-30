@@ -9,11 +9,20 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from apps.users.models import Users
 from apps.users.api.serializers import UserSerializer, getUserSerializer
 
+"""
+  Endpoints for anything
+"""
+
 
 @api_view(['GET'])
 def api_anything(request, resource):
     if request.method == 'GET':
         return Response({"error": "Not found"}, status=status.HTTP_200_OK)
+
+
+"""
+  Endpoints for login
+"""
 
 
 @api_view(['POST'])
@@ -44,6 +53,11 @@ def login(request):
                             status=status.HTTP_403_FORBIDDEN)
 
 
+"""
+  Endpoints for List users
+"""
+
+
 @api_view(['GET'])
 @permission_classes((IsAuthenticated,))
 def api_users(request):
@@ -56,6 +70,11 @@ def api_users(request):
     else:
         return Response({"error": "Request should have 'Content-Type' header with value 'application/json'"},
                         status=status.HTTP_403_FORBIDDEN)
+
+
+"""
+  Endpoints for create users
+"""
 
 
 @api_view(['POST'])
@@ -83,6 +102,11 @@ def api_users_create(request):
                         status=status.HTTP_403_FORBIDDEN)
 
 
+"""
+  Endpoints for bring a user
+"""
+
+
 @api_view(['GET'])
 @permission_classes((IsAuthenticated,))
 def getuser(request, pk=None):
@@ -106,6 +130,11 @@ def getuser(request, pk=None):
     else:
         return Response({"error": "Request should have 'Content-Type' header with value 'application/json'"},
                         status=status.HTTP_403_FORBIDDEN)
+
+
+"""
+  Endpoints for update user
+"""
 
 
 @api_view(['PUT'])
@@ -139,6 +168,11 @@ def edit_user(request, pk=None):
                         status=status.HTTP_403_FORBIDDEN)
 
 
+"""
+  Endpoints for update partial data of a user
+"""
+
+
 @api_view(['PATCH'])
 @permission_classes((IsAuthenticated,))
 def edit_p_user(request, pk=None):
@@ -165,6 +199,11 @@ def edit_p_user(request, pk=None):
     else:
         return Response({"error": "Request should have 'Content-Type' header with value 'application/json'"},
                         status=status.HTTP_403_FORBIDDEN)
+
+
+"""
+  Endpoints for delete a record
+"""
 
 
 @api_view(['DELETE'])
