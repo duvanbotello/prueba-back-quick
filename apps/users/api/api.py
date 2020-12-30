@@ -1,8 +1,11 @@
+from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework_simplejwt.tokens import RefreshToken
+
 from apps.users.models import Users
 from apps.users.api.serializers import UserSerializer
 
@@ -11,6 +14,36 @@ from apps.users.api.serializers import UserSerializer
 def api_anything(request, resource):
     if request.method == 'GET':
         return Response({"error": "Not found"}, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def login(request):
+    if request.method == 'POST':
+        if request.content_type == 'application/json':
+            # list users
+            if request.method == 'POST':
+                if len(request.data) != 0:
+                    email = request.data['email']
+                    password = request.data['password']
+                    user = authenticate(email=email, password=password)
+                    if user is not None:
+                        refresh = RefreshToken.for_user(user)
+                        user.token = refresh.access_token
+                        user.save()
+                        user_serializer = UserSerializer(user)
+                        response = user_serializer.data
+                        response.pop('password', None)
+                        response.pop('is_active', None)
+                        response.pop('last_login', None)
+                        response.pop('is_admin', None)
+                        return Response(response, status=status.HTTP_200_OK)
+                    else:
+                        return Response({"error": "Error in user or password"}, status=status.HTTP_401_UNAUTHORIZED)
+                else:
+                    return Response({'message': 'empty body'}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"error": "Request should have 'Content-Type' header with value 'application/json'"},
+                            status=status.HTTP_403_FORBIDDEN)
 
 
 @api_view(['GET'])
