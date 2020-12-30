@@ -16,7 +16,6 @@ Prueba para el cargo de Desarrollador backend Quick.
 
 ## Instalacion del proyecto
 ***************************************
-.. code-block:: rst
 
     $ docker-compose up -d
     $ docker exec -it api_quick bash
@@ -37,7 +36,17 @@ Simple JWT proporciona un backend de autenticación JSON Web Token para Django R
 
 **¿Como Autenticarme?**
 
-La API REST posee un Endpoints que permite iniciar session en el sistema y nos suministra el token de autorizacion necesario.
+La API REST posee un Endpoints que permite iniciar session en el sistema y nos suministra el token de autorizacion necesario. El token que nos genere se debe colocar como cabezara para acceder a los Endpoints portegidos.
+
+Cada peticion debe tener la siguente estructura en su Header.
+
+> > > **Header**
+> > > 
+> > > |Key|Value|Description|
+> > > |---|---|---|
+> > > |Content-Type|application/json||
+> > > |Authorization|Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5MzQ5NTkyLCJqdGkiOiJjYTU3ZDU5YjhkZmU0NjBjYWY5M2IzYTU5Mjc4YTIyMCIsInVzZXJfaWQiOjF9.QaVKdFFcbXcUqKvO5xSbRCq6tlAOv8F3UvzCxTbsRPU||
+> > > 
 
 ----------------
 
@@ -171,7 +180,7 @@ POST http://3.129.92.204:8000/api/login
 # Endpoints
 ----------------
 
-## /api/users/create
+## POST /api/users/create "Realizar un nuevo registro"
 
 ```
 POST http://3.129.92.204:8000/api/users/create
@@ -208,7 +217,7 @@ POST http://3.129.92.204:8000/api/users/create
 ### Examples:
 
 > 
-> **Example: /api/users/create**
+> **Example: /api/users/create "Cuando el usuario inicio session, pero no actualizo el token jwt en el Header"**
 > 
 > > 
 > > ```
@@ -255,7 +264,7 @@ POST http://3.129.92.204:8000/api/users/create
 > > > 
 > > 
 > 
-> **Example: /api/users/create**
+> **Example: /api/users/create "Cuando ejecuta la peticion de manera correcta"**** 
 > 
 > > 
 > > ```
@@ -309,7 +318,7 @@ POST http://3.129.92.204:8000/api/users/create
 > > > 
 > > 
 > 
-> **Example: /api/users/create**
+> **Example: /api/users/create "Cuando el cuerpo de la peticion va vacio"**
 > 
 > > 
 > > ```
@@ -342,64 +351,10 @@ POST http://3.129.92.204:8000/api/users/create
 > > > 
 > > 
 > 
-> **Example: /api/users/create**
-> 
-> > 
-> > ```
-> > POST http://3.129.92.204:8000/api/users/create
-> > ```
-> > 
-> > **Request**
-> > 
-> > > 
-> > > **Header**
-> > > 
-> > > |Key|Value|Description|
-> > > |---|---|---|
-> > > |Content-Type|application/json||
-> > > |Authorization|Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5Mzc3MDUyLCJqdGkiOiJmNDc2ZmNkY2M2ZGI0OTM5OTQ1OWJmNTIxMzI1NzRjYSIsInVzZXJfaWQiOjN9.VluB1OQVKbN0mVkvdNPqaoQJfVhJ6jtl0WH0Tcw3jwk||
-> > > 
-> > > **Body**
-> > > 
-> > > ```
-> > > {
-> > >     "first_name": "John",
-> > >     "last_name": "Doe",
-> > >     "email": "nuevo@example.com",
-> > >     "password": "SECRET",
-> > >     "age": 42,
-> > >     "token": "prueba",
-> > >     "image": "IMAGE"
-> > > }
-> > > ```
-> > > 
-> > 
-> > ----------------
-> > 
-> > **Response**
-> > 
-> > > 
-> > > **Body**
-> > > 
-> > > ```
-> > > {
-> > >   "id": 5,
-> > >   "first_name": "John",
-> > >   "last_name": "Doe",
-> > >   "email": "nuevo@example.com",
-> > >   "token": "prueba",
-> > >   "age": 42,
-> > >   "image": "IMAGE",
-> > >   "description": ""
-> > > }
-> > > ```
-> > > 
-> > 
-> 
 
 ----------------
 
-## /api/users/edit/{id}
+## PUT /api/users/edit/{id} "Actualizar los datos de un registro en especifico"
 
 ```
 PUT http://3.129.92.204:8000/api/users/edit/2
@@ -438,7 +393,7 @@ PUT http://3.129.92.204:8000/api/users/edit/2
 ### Examples:
 
 > 
-> **Example: /api/users/edit/6**
+> **Example: /api/users/edit/6 "Mejor de los casos"**
 > 
 > > 
 > > ```
@@ -496,7 +451,7 @@ PUT http://3.129.92.204:8000/api/users/edit/2
 
 ----------------
 
-## /api/users/editp/{id}
+## PATCH /api/users/editp/{id} "Actualizar datos parciales de un reigstro"
 
 ```
 PATCH http://3.129.92.204:8000/api/users/editp/2
@@ -531,7 +486,7 @@ PATCH http://3.129.92.204:8000/api/users/editp/2
 ### Examples:
 
 > 
-> **Example: /api/users/editp/7**
+> **Example: /api/users/editp/7 "Mejor de los casos"**
 > 
 > > 
 > > ```
@@ -584,7 +539,7 @@ PATCH http://3.129.92.204:8000/api/users/editp/2
 
 ----------------
 
-## /api/users/
+## GET /api/users/ "Lista todos los usuarios"
 
 ```
 GET http://3.129.92.204:8000/api/users/
@@ -696,92 +651,10 @@ GET http://3.129.92.204:8000/api/users/
 > > > 
 > > 
 > 
-> **Example: /api/users/**
-> 
-> > 
-> > ```
-> > GET http://3.129.92.204:8000/api/users/
-> > ```
-> > 
-> > **Request**
-> > 
-> > > 
-> > > **Header**
-> > > 
-> > > |Key|Value|Description|
-> > > |---|---|---|
-> > > |Content-Type|application/json||
-> > > |Authorization|Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5MzgyMDcyLCJqdGkiOiIxOTI5MWU2MWJlMTU0OWZiYmI5NDI2MmRjZWMyM2FkZCIsInVzZXJfaWQiOjN9.BG1CmkM8IFkuQXY2hzzLMtTds-UlcJE3QjkvBVc69DQ||
-> > > 
-> > 
-> > ----------------
-> > 
-> > **Response**
-> > 
-> > > 
-> > > **Body**
-> > > 
-> > > ```
-> > > [
-> > >   {
-> > >     "id": 2,
-> > >     "first_name": "Duvan",
-> > >     "last_name": "Botello",
-> > >     "email": "admin@ggmail.com",
-> > >     "token": "inicial",
-> > >     "age": 24,
-> > >     "image": null,
-> > >     "description": ""
-> > >   },
-> > >   {
-> > >     "id": 4,
-> > >     "first_name": "John",
-> > >     "last_name": "Doe",
-> > >     "email": "user@example.com",
-> > >     "token": "null",
-> > >     "age": 42,
-> > >     "image": "IMAGE",
-> > >     "description": ""
-> > >   },
-> > >   {
-> > >     "id": 5,
-> > >     "first_name": "John",
-> > >     "last_name": "Doe",
-> > >     "email": "nuevo@example.com",
-> > >     "token": "prueba",
-> > >     "age": 42,
-> > >     "image": "IMAGE",
-> > >     "description": ""
-> > >   },
-> > >   {
-> > >     "id": 3,
-> > >     "first_name": "Duvan",
-> > >     "last_name": "Botello",
-> > >     "email": "admin@gmail.com",
-> > >     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5MzgyMDcyLCJqdGkiOiIxOTI5MWU2MWJlMTU0OWZiYmI5NDI2MmRjZWMyM2FkZCIsInVzZXJfaWQiOjN9.BG1CmkM8IFkuQXY2hzzLMtTds-UlcJE3QjkvBVc69DQ",
-> > >     "age": 24,
-> > >     "image": null,
-> > >     "description": ""
-> > >   },
-> > >   {
-> > >     "id": 6,
-> > >     "first_name": "nuevo",
-> > >     "last_name": "nuevo",
-> > >     "email": "ds@example.com",
-> > >     "token": "dsddsd",
-> > >     "age": 55,
-> > >     "image": null,
-> > >     "description": ""
-> > >   }
-> > > ]
-> > > ```
-> > > 
-> > 
-> 
 
 ----------------
 
-## /api/users/{id}
+## GET /api/users/{id} "Listar un usuario en especifico"
 
 ```
 GET http://3.129.92.204:8000/api/users/2
@@ -805,7 +678,7 @@ GET http://3.129.92.204:8000/api/users/2
 ### Examples:
 
 > 
-> **Example: /api/users/2**
+> **Example: /api/users/2 "Mejor de los casos"**
 > 
 > > 
 > > ```
@@ -848,7 +721,7 @@ GET http://3.129.92.204:8000/api/users/2
 
 ----------------
 
-## /api/users/delete/{id}
+## DELETE /api/users/delete/{id} "Eliminar un registro de la base de datos"
 
 ```
 DELETE http://3.129.92.204:8000/api/users/delete/4
@@ -872,7 +745,7 @@ DELETE http://3.129.92.204:8000/api/users/delete/4
 ### Examples:
 
 > 
-> **Example: /api/users/delete/7**
+> **Example: /api/users/delete/7  "Mejor de los casos"**
 > 
 > > 
 > > ```
@@ -915,7 +788,7 @@ DELETE http://3.129.92.204:8000/api/users/delete/4
 
 ----------------
 
-## /{anything}
+## GET /{anything} "Cuando se ingresa una ruta que no existe dentro de la API"
 
 ```
 GET http://3.129.92.204:8000/cualquiercosa
@@ -961,7 +834,7 @@ GET http://3.129.92.204:8000/cualquiercosa
 
 ----------------
 
-## /auth/token/
+## POST /auth/token/ "Para generar un nuevo token"
 
 ```
 POST http://18.223.124.251:8000/auth/token/
