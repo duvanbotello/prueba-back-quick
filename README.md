@@ -865,10 +865,4 @@ Endpoints para generar JSON Web Token
 > ```
 > 
 
-### Examples:
 
-> 
-
-----------------
-
-----------------
