@@ -37,11 +37,7 @@ Simple JWT proporciona un backend de autenticación JSON Web Token para Django R
 
 **¿Como Autenticarme?**
 
-La API REST posee un Endpoints que permite iniciar session en el sistema y nos suministra el token de autorizacion.
-
-## Códigos de error
-What errors and status codes can a user expect?
-
+La API REST posee un Endpoints que permite iniciar session en el sistema y nos suministra el token de autorizacion necesario.
 
 ----------------
 
@@ -60,8 +56,8 @@ POST http://3.129.92.204:8000/api/login
 > 
 > **Header**
 > 
-> |Key|Value|Description|
-> |---|---|---|
+> |Key|Value|
+> |---|---|
 > |Content-Type|application/json||
 > 
 > **Body**
@@ -90,8 +86,8 @@ POST http://3.129.92.204:8000/api/login
 > > > 
 > > > **Header**
 > > > 
-> > > |Key|Value|Description|
-> > > |---|---|---|
+> > > |Key|Value|
+> > > |---|---|
 > > > |Content-Type|application/json||
 > > > 
 > > > **Body**
@@ -139,51 +135,9 @@ POST http://3.129.92.204:8000/api/login
 > > > 
 > > > **Header**
 > > > 
-> > > |Key|Value|Description|
-> > > |---|---|---|
-> > > |Content-Type|application/json||
-> > > 
-> > > **Body**
-> > > 
-> > > ```
-> > > {
-> > > 	"email": "admin@gmail.com", 
-> > > 	"password": ""
-> > > 	
-> > > }
-> > > ```
-> > > 
-> > 
-> > ----------------
-> > 
-> > **Response**
-> > 
-> > > 
-> > > **Body**
-> > > 
-> > > ```
-> > > {
-> > >   "error": "Error in user or password"
-> > > }
-> > > ```
-> > > 
-> > 
-> 
-> **Example: /api/login**
-> 
-> > 
-> > ```
-> > POST http://3.129.92.204:8000/api/login
-> > ```
-> > 
-> > **Request**
-> > 
-> > > 
-> > > **Header**
-> > > 
-> > > |Key|Value|Description|
-> > > |---|---|---|
-> > > |Content-Type|application/json||
+> > > |Key|Value|
+> > > |---|---|
+> > > |Content-Type|
 > > > 
 > > > **Body**
 > > > 
@@ -212,7 +166,12 @@ POST http://3.129.92.204:8000/api/login
 > > 
 > 
 
+
 ----------------
+
+## Códigos de error
+What errors and status codes can a user expect?
+
 
 ## /api/users/create
 
