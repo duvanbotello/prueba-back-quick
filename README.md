@@ -137,7 +137,7 @@ POST http://3.129.92.204:8000/api/login
 > > > 
 > > > |Key|Value|
 > > > |---|---|
-> > > |Content-Type|
+> > > |Content-Type|application/json||
 > > > 
 > > > **Body**
 > > > 
@@ -168,10 +168,8 @@ POST http://3.129.92.204:8000/api/login
 
 
 ----------------
-
-## Códigos de error
-What errors and status codes can a user expect?
-
+# Endpoints
+----------------
 
 ## /api/users/create
 
@@ -191,7 +189,7 @@ POST http://3.129.92.204:8000/api/users/create
 > |Key|Value|Description|
 > |---|---|---|
 > |Content-Type|application/json||
-> |Authorization|Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5MzgyMDcyLCJqdGkiOiIxOTI5MWU2MWJlMTU0OWZiYmI5NDI2MmRjZWMyM2FkZCIsInVzZXJfaWQiOjN9.BG1CmkM8IFkuQXY2hzzLMtTds-UlcJE3QjkvBVc69DQ||
+> |Authorization|Bearer TOKEN JWT||
 > 
 > **Body**
 > 
