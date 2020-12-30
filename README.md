@@ -589,64 +589,48 @@ GET http://3.129.92.204:8000/api/users/
 > > > **Body**
 > > > 
 > > > ```
-> > > [
+> > >[
+> > >    {
+> > >        "id": 5,
+> > >        "first_name": "John",
+> > >        "last_name": "Doe",
+> > >        "email": "nuevo@example.com",
+> > >        "token": "prueba",
+> > >        "age": 42,
+> > >        "image": "IMAGE",
+> > >        "description": ""
+> > >    },
+> > >    {
+> > >        "id": 6,
+> > >        "first_name": "nuevo",
+> > >        "last_name": "nuevo",
+> > >        "email": "ds@example.com",
+> > >        "token": "dsddsd",
+> > >        "age": 55,
+> > >       "image": null,
+> > >        "description": ""
+> > >    },
+> > >    {
+> > >        "id": 3,
+> > >        "first_name": "Duvan",
+> > >        "last_name": "Botello",
+> > >        "email": "admin@gmail.com",
+> > >        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5MzgzMTYwLCJqdGkiOiJmMGRjMWU5Mjg4YTE0NjQ4ODMzZmM4MTRkYTU0ODA3OCIsInVzZXJfaWQiOjN9.otyVCRKx8Qtm9wTm80kzvWtjfnc0ffKjHWgnBi403p0",
+> > >        "age": 24,
+> > >       "image": null,
+> > >       "description": ""
+> > >    },
 > > >   {
-> > >     "id": 2,
-> > >     "password": "pbkdf2_sha256$216000$87mYTtRaH1kQ$mErYVL5EZHGiOfmIr93DVAGFzehIkw5GMsKKdV1nejw=",
-> > >     "last_login": null,
-> > >     "first_name": "Duvan",
-> > >     "last_name": "Botello",
-> > >     "email": "admin@ggmail.com",
-> > >     "token": "inicial",
-> > >     "age": 24,
-> > >     "image": null,
-> > >     "description": "",
-> > >     "is_active": true,
-> > >     "is_admin": true
-> > >   },
-> > >   {
-> > >     "id": 4,
-> > >     "password": "pbkdf2_sha256$216000$8SAmtkD8fMDd$cCgPEcR6xYzEcIhHntVEu2WWwyCnuAmuSFgFHvoZKtU=",
-> > >     "last_login": null,
-> > >     "first_name": "John",
-> > >     "last_name": "Doe",
-> > >     "email": "user@example.com",
-> > >     "token": "null",
-> > >     "age": 42,
-> > >     "image": "IMAGE",
-> > >     "description": "",
-> > >     "is_active": true,
-> > >     "is_admin": false
-> > >   },
-> > >   {
-> > >     "id": 3,
-> > >     "password": "pbkdf2_sha256$216000$IEv8dWdqDIRb$xSZg/B26Sq4Z1wb7v3YWmgjzVtvxP74iGCBixFU+UDA=",
-> > >     "last_login": null,
-> > >     "first_name": "Duvan",
-> > >     "last_name": "Botello",
-> > >     "email": "admin@gmail.com",
-> > >     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA5Mzc5OTg0LCJqdGkiOiJlMWVlZjcyZTcwOGI0MDExOGE2OTUxZDVhZjQyMDUwYiIsInVzZXJfaWQiOjN9.RB_p7sv2TCP3RJFpvwlJ-LTvDpgp2WDWZAlQCUbkOBk",
-> > >     "age": 24,
-> > >     "image": null,
-> > >     "description": "",
-> > >     "is_active": true,
-> > >     "is_admin": true
-> > >   },
-> > >   {
-> > >     "id": 5,
-> > >     "password": "pbkdf2_sha256$216000$aB4KWaeiOlqA$YApFuOacriEYLZbeRhl0I2kCdsiG6UJEM/Z4UiHxGuc=",
-> > >     "last_login": null,
-> > >     "first_name": "John",
-> > >     "last_name": "Doe",
-> > >     "email": "nuevo@example.com",
-> > >     "token": "prueba",
-> > >     "age": 42,
-> > >     "image": "IMAGE",
-> > >     "description": "",
-> > >     "is_active": true,
-> > >     "is_admin": false
-> > >   }
-> > > ]
+> > >       "id": 2,
+> > >       "first_name": "modificado",
+> > >        "last_name": "modifcado",
+> > >        "email": "user@example.com",
+> > >        "token": "dsdsd",
+> > >        "age": 105,
+> > >        "image": "IMAGE",
+> > >       "description": "nuevo texto"
+> > >    }
+> > >]
 > > > ```
 > > > 
 > > 
