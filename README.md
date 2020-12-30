@@ -104,7 +104,7 @@ POST http://3.129.92.204:8000/api/login
 > > > ```
 > > > {
 > > > 	"email": "admin@gmail.com", 
-> > > 	"password": "admin456123"
+> > > 	"password": "admin"
 > > > 	
 > > > }
 > > > ```
